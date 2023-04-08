@@ -1,36 +1,44 @@
 package UI;
 
-import DAL.CategoryDAL;
+import BLL.CategoryBLL;
+import BLL.VegetableBLL;
 import Entity.Category;
 import Entity.Vegetable;
-import Util.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
-import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) {
-
-        CategoryDAL cDAL = new CategoryDAL();
-//        cDAL.loadCategory().forEach(element -> System.out.println(element)); // San pham cua cac danh muc tuong ung
-        cDAL.getCategory(2).getVegetables().forEach(element -> System.out.println(element)); // San pham cua danh muc duoc chi dinh
-
-
-//        Session session = HibernateUtil.getSessionFactory().openSession();
-//        session.beginTransaction();
-//        List<Category> categories = session.createQuery("from Category", Category.class).list();
-//        categories.forEach(element -> {
-//            System.out.println(element);
-//            element.getVegetables().forEach(vegetable -> {
-//                System.out.println(vegetable);
-//            });
-//            System.out.println();
-//        });
-//        List<Vegetable> vegetables = session.createQuery("from Vegetable", Vegetable.class).list();
-//        vegetables.forEach(element -> {
-//            System.out.println(element);
-//        });
+        VegetableBLL vBLL = new VegetableBLL();
+        //Chưa có Categor
+        CategoryBLL cBLL = new CategoryBLL();
+        Category c = cBLL.getCategory(2);
+        Vegetable v = new Vegetable();
+        
+        //Hiển thị danh sách rau củ
+        for(Object vObject : vBLL.loadVegetable()){
+            Vegetable vegetable = (Vegetable)vObject;
+            System.out.println(vegetable);
+        }
+        
+//        //Thêm 1 loại rau mới
+//        v.setCategory(c);
+//        v.setVegetableName("Zucchini");
+//        v.setUnit("kg");
+//        v.setAmount(10);
+//        v.setImage("images/zucchini.jpg");
+//        v.setPrice(30000.0);
+//        
+//        vBLL.addVegetable(v);
+        
+//        //Sửa một loại rau (1 hàng) đã có, thử sửa giá, còn những thuộc tính khác giữ nguyên
+//        v = vBLL.getVegetable(9);
+//        v.setPrice(32000.0);
+//        
+//        vBLL.updateVegetable(v);
+        
+//        //Xóa một loại rau có sẵn
+//        v = vBLL.getVegetable(9);
+//        
+//        vBLL.deleteVegetable(v);
     }
 }

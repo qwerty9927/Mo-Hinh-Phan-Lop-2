@@ -19,7 +19,22 @@ public class CategoryDAL {
         List<Category> categories = query.list();
         return categories;
     }
+    
+    public void addCategory(Category v) {
+        session.persist(v);
+        session.getTransaction().commit();
+    }
 
+    public void updateCategory(Category v) {
+        session.merge(v);
+        session.getTransaction().commit();
+    }
+
+    public void deleteCategory(Category v) {
+        session.remove(v);
+        session.getTransaction().commit();
+    }
+    
     public Category getCategory(int Id){
         Category c = session.get(Category.class, Id);
         return c;

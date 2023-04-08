@@ -1,11 +1,13 @@
 package Entity;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Vegetable {
+public class Vegetable implements Serializable{
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int VegetableID;
 
     @Column(name = "Vegetable_Name")
