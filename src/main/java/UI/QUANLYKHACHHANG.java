@@ -8,12 +8,12 @@ package UI;
  *
  * @author MSIs
  */
-public class LAPHOADON extends javax.swing.JFrame {
+public class QUANLYKHACHHANG extends javax.swing.JFrame {
 
     /**
-     * Creates new form NewJFrame
+     * Creates new form ONSITECOURSE
      */
-    public LAPHOADON() {
+    public QUANLYKHACHHANG() {
         initComponents();
     }
 
@@ -37,72 +37,73 @@ public class LAPHOADON extends javax.swing.JFrame {
         search = new javax.swing.JTextField();
         nutsearch = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        nuAadd2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        nuAadd2 = new javax.swing.JButton();
+        nutDelete = new javax.swing.JButton();
+        nutEdit = new javax.swing.JButton();
+        nutReset = new javax.swing.JButton();
         jTextField6 = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tieude.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/invoice.png"))); // NOI18N
-        tieude.setText(" LẬP HÓA ĐƠN");
-        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 20, 300, -1));
+        tieude.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/customer.png"))); // NOI18N
+        tieude.setText(" QUẢN LÝ KHÁCH HÀNG");
+        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 285, -1));
 
         Lastname.setBackground(new java.awt.Color(0, 153, 255));
         Lastname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Lastname.setText("Customer Name:");
-        getContentPane().add(Lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 176, 20));
+        Lastname.setText("Customer ID :");
+        getContentPane().add(Lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 140, 20));
 
         Firstname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Firstname.setText("Address :");
-        getContentPane().add(Firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, 20));
+        Firstname.setText("Password :");
+        getContentPane().add(Firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 100, 20));
 
         Enrollmentdate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Enrollmentdate.setText("Vegetable ID :");
-        getContentPane().add(Enrollmentdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 160, 40));
+        Enrollmentdate.setText("Full Name:");
+        getContentPane().add(Enrollmentdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 320, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 280, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 320, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 280, -1));
 
         table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Customer Name", "Address", "Vegetable ID", "Date", "Quantity", "Note"
+                "Costomer ID", "Full Name", "Password", "Address", "City"
             }
         ));
         jScrollPane1.setViewportView(table);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 800, 290));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 800, 342));
 
         search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchActionPerformed(evt);
             }
         });
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 400, 30));
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 400, 30));
 
         nutsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
         nutsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -110,11 +111,29 @@ public class LAPHOADON extends javax.swing.JFrame {
                 nutsearchActionPerformed(evt);
             }
         });
-        getContentPane().add(nutsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, 34, 30));
+        getContentPane().add(nutsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 34, 30));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Date :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 215, -1, 30));
+        jLabel2.setText("Address :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 280, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("City :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 245, -1, 30));
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 280, -1));
 
         nuAadd2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nuAadd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
@@ -125,48 +144,52 @@ public class LAPHOADON extends javax.swing.JFrame {
                 nuAadd2ActionPerformed(evt);
             }
         });
-        getContentPane().add(nuAadd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 140, 90, -1));
+        getContentPane().add(nuAadd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 90, -1));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nutDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        nutDelete.setText("Delete");
+        nutDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                nutDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 100, 320, -1));
+        getContentPane().add(nutDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 90, -1));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Quantity :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        nutEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        nutEdit.setText("Edit");
+        nutEdit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                nutEditActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 320, -1));
+        getContentPane().add(nutEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 90, -1));
 
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        nutReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset.png"))); // NOI18N
+        nutReset.setText("Reset");
+        nutReset.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                nutResetActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 220, 320, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Note:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, -1, -1));
+        getContentPane().add(nutReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 90, -1));
 
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 320, -1));
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 280, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(2000, 450));
         background.setPreferredSize(new java.awt.Dimension(1000, 450));
-        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 380));
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -187,14 +210,6 @@ public class LAPHOADON extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nutsearchActionPerformed
 
-    private void nuAadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuAadd2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuAadd2ActionPerformed
-
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -202,6 +217,22 @@ public class LAPHOADON extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void nuAadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuAadd2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuAadd2ActionPerformed
+
+    private void nutDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutDeleteActionPerformed
+
+    private void nutEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutEditActionPerformed
+
+    private void nutResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutResetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutResetActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
         // TODO add your handling code here:
@@ -224,18 +255,14 @@ public class LAPHOADON extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LAPHOADON.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QUANLYKHACHHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LAPHOADON.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QUANLYKHACHHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LAPHOADON.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QUANLYKHACHHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LAPHOADON.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QUANLYKHACHHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -244,7 +271,7 @@ public class LAPHOADON extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LAPHOADON().setVisible(true);
+                new QUANLYKHACHHANG().setVisible(true);
             }
         });
     }
@@ -256,15 +283,16 @@ public class LAPHOADON extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JButton nuAadd2;
+    private javax.swing.JButton nutDelete;
+    private javax.swing.JButton nutEdit;
+    private javax.swing.JButton nutReset;
     private javax.swing.JButton nutsearch;
     private javax.swing.JTextField search;
     private javax.swing.JTable table;
