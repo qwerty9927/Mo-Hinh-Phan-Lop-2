@@ -20,6 +20,12 @@ public class CategoryDAL {
         return categories;
     }
     
+    public List loadCategoryName(){
+        Query query = session.createQuery("select Name from Category", Category.class);
+        List<Category> categories = query.list();
+        return categories;
+    }
+    
     public void addCategory(Category v) {
         session.persist(v);
         session.getTransaction().commit();

@@ -15,8 +15,12 @@ public class ImportProductBLL {
         return ipDAL.productList();
     }
     
-    public ArrayList catgoryList(){
+    public ArrayList<Category> catgoryList(){
         return ipDAL.categoryList();
+    }
+    
+    public ArrayList loadCategoryDes(){
+        return ipDAL.loadCategoryDes();
     }
     
     public boolean importProduct(Vegetable vegetable){

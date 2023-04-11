@@ -23,10 +23,16 @@ public class ImportProductDAL {
         return vegetables;
     }
     
-    public ArrayList categoryList(){
+    public ArrayList<Category> categoryList(){
         Query query = session.createQuery("from Category", Category.class);
         ArrayList<Category> categories = (ArrayList<Category>) query.list();
         return categories;
+    }
+    
+    public ArrayList loadCategoryDes(){
+        Query query = session.createQuery("select CategoryID, Description from Category", Category.class);
+        ArrayList<Category> categoryNames = (ArrayList<Category>) query.list();
+        return categoryNames;
     }
     
     public boolean Import(Vegetable v) {
