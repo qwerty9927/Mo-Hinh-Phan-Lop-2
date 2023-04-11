@@ -1,5 +1,6 @@
 package BLL;
 
+import Entity.Vegetable;
 import java.util.ArrayList;
 
 public class ImportProductBLL {
@@ -10,6 +11,10 @@ public class ImportProductBLL {
     
     public ArrayList productList(){
         return ipBLL.productList();
+    }
+    
+    public boolean importProduct(Vegetable vegetable){
+        return ipBLL.importProduct(vegetable);
     }
 }
 
