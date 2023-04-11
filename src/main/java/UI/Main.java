@@ -13,7 +13,7 @@ public class Main {
         CategoryBLL cBLL = new CategoryBLL();
         Category c = cBLL.getCategory(2);
         Vegetable v = new Vegetable();
-        
+        System.out.println("");
         //Hiển thị danh sách rau củ
         for(Object vObject : vBLL.loadVegetable()){
             Vegetable vegetable = (Vegetable)vObject;

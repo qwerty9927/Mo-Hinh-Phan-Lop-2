@@ -2,44 +2,33 @@ package DAL;
 
 import Entity.Vegetable;
 import Util.HibernateUtil;
-import java.util.List;
-import org.hibernate.HibernateException;
+import java.util.ArrayList;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
 
-public class VegetableDAL {
+public class ImportProductDAL {
 
     Session session;
 
-    public VegetableDAL() {
+    public ImportProductDAL() {
         session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
     }
 
-    public List loadVegetable() {
+    public ArrayList productList() {
         Query query = session.createQuery("from Vegetable", Vegetable.class);
-        List<Vegetable> vegetables = query.list();
+        ArrayList<Vegetable> vegetables = (ArrayList<Vegetable>) query.list();
         return vegetables;
     }
 
-    public boolean addVegetable(Vegetable v) {
+    public boolean Import(Vegetable v) {
         session.persist(v);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
 
-    public void updateVegetable(Vegetable v) {
-        session.merge(v);
-        session.getTransaction().commit();
-    }
-
-    public void deleteVegetable(Vegetable v) {
-        session.remove(v);
-        session.getTransaction().commit();
-    }
-
-    public Vegetable getVegetable(int Id) {
+    public Vegetable GetProduct(int Id) {
         Vegetable v = session.get(Vegetable.class, Id);
         return v;
     }
