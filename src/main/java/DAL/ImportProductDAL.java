@@ -1,5 +1,6 @@
 package DAL;
 
+import Entity.Category;
 import Entity.Vegetable;
 import Util.HibernateUtil;
 import java.util.ArrayList;
@@ -21,16 +22,27 @@ public class ImportProductDAL {
         ArrayList<Vegetable> vegetables = (ArrayList<Vegetable>) query.list();
         return vegetables;
     }
-
+    
+    public ArrayList categoryList(){
+        Query query = session.createQuery("from Category", Category.class);
+        ArrayList<Category> categories = (ArrayList<Category>) query.list();
+        return categories;
+    }
+    
     public boolean Import(Vegetable v) {
         session.persist(v);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
 
-    public Vegetable GetProduct(int Id) {
+    public Vegetable getProduct(int Id) {
         Vegetable v = session.get(Vegetable.class, Id);
         return v;
+    }
+    
+    public Category getCategory(int Id){
+        Category c = session.get(Category.class, Id);
+        return c;
     }
 }
 

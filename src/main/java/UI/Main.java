@@ -1,25 +1,28 @@
 package UI;
 
-import BLL.CategoryBLL;
-import BLL.VegetableBLL;
+import BLL.ImportProductBLL;
 import Entity.Category;
 import Entity.Vegetable;
 
-
 public class Main {
+
     public static void main(String[] args) {
-        VegetableBLL vBLL = new VegetableBLL();
         //Chưa có Categor
-        CategoryBLL cBLL = new CategoryBLL();
-        Category c = cBLL.getCategory(2);
+        ImportProductBLL ipBLL = new ImportProductBLL();
+        Category c = ipBLL.getCategory(2);
         Vegetable v = new Vegetable();
-        System.out.println("");
+        System.out.println();
+
         //Hiển thị danh sách rau củ
-        for(Object vObject : vBLL.loadVegetable()){
-            Vegetable vegetable = (Vegetable)vObject;
+        for (Object vObject : ipBLL.productList()) {
+            Vegetable vegetable = (Vegetable) vObject;
             System.out.println(vegetable);
         }
-        
+
+        for (Object vObject : ipBLL.catgoryList()) {
+            Category category = (Category) vObject;
+            System.out.println(category);
+        }
 //        //Thêm 1 loại rau mới
 //        v.setCategory(c);
 //        v.setVegetableName("Zucchini");
@@ -28,14 +31,13 @@ public class Main {
 //        v.setImage("images/zucchini.jpg");
 //        v.setPrice(30000.0);
 //        
-//        vBLL.addVegetable(v);
-        
+//        ipBLL.importProduct(v);
+
 //        //Sửa một loại rau (1 hàng) đã có, thử sửa giá, còn những thuộc tính khác giữ nguyên
 //        v = vBLL.getVegetable(9);
 //        v.setPrice(32000.0);
 //        
 //        vBLL.updateVegetable(v);
-        
 //        //Xóa một loại rau có sẵn
 //        v = vBLL.getVegetable(9);
 //        

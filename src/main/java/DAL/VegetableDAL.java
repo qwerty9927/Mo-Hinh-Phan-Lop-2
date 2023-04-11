@@ -3,7 +3,6 @@ package DAL;
 import Entity.Vegetable;
 import Util.HibernateUtil;
 import java.util.List;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.hibernate.resource.transaction.spi.TransactionStatus;
