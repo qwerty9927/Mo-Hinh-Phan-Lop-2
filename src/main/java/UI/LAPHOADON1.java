@@ -50,7 +50,7 @@ public class LAPHOADON1 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tieude.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invoice.png"))); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/invoice.png"))); // NOI18N
         tieude.setText(" LẬP HÓA ĐƠN");
         getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 20, 300, -1));
 

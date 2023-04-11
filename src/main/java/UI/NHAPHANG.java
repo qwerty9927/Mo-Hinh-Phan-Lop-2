@@ -49,7 +49,7 @@ public class NHAPHANG extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tieude.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/boxes.png"))); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/boxes.png"))); // NOI18N
         tieude.setText("NHẬP HÀNG");
         getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 340, 40));
 

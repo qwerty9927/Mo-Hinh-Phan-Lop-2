@@ -50,7 +50,7 @@ public class QUANLYKHACHHANG extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tieude.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/customer.png"))); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/customer.png"))); // NOI18N
         tieude.setText(" QUẢN LÝ KHÁCH HÀNG");
 
         Lastname.setBackground(new java.awt.Color(0, 153, 255));
