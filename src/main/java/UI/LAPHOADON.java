@@ -50,7 +50,7 @@ public class LAPHOADON extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tieude.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invoice.png"))); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/bill.png"))); // NOI18N
         tieude.setText(" LẬP HÓA ĐƠN");
         getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 20, 300, -1));
 
@@ -81,7 +81,6 @@ public class LAPHOADON extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 320, -1));
 
-        table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -104,7 +103,7 @@ public class LAPHOADON extends javax.swing.JFrame {
         });
         getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 340, 400, 30));
 
-        nutsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/1_1.png"))); // NOI18N
+        nutsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
         nutsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nutsearchActionPerformed(evt);
@@ -116,8 +115,7 @@ public class LAPHOADON extends javax.swing.JFrame {
         jLabel2.setText("Date :");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 215, -1, 30));
 
-        nuAadd2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        nuAadd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/b.png"))); // NOI18N
+        nuAadd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
         nuAadd2.setText("Add");
         nuAadd2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         nuAadd2.addActionListener(new java.awt.event.ActionListener() {
@@ -163,7 +161,7 @@ public class LAPHOADON extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, 320, -1));
 
-        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/image/backgound.jpg"))); // NOI18N
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(2000, 450));
         background.setPreferredSize(new java.awt.Dimension(1000, 450));
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 380));
