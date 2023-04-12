@@ -13,12 +13,14 @@ import java.util.List;
 public class StatisticalDAL {
 
     private Session session;
+    private CategoryDAL cDAL;
     public StatisticalDAL(){
+        cDAL = new CategoryDAL();
         session = HibernateUtil.getSessionFactory().openSession();
     }
     public List statisticalRevenueOfCategory(int month, int year){
         ArrayList<Float> listRevenue = new ArrayList<>();
-        List<Category> categories = session.createQuery("from Category", Category.class).list();
+        List<Category> categories = cDAL.loadCategory();
         categories.forEach(category -> {
             List<Vegetable> vegetables = category.getVegetables();
             final float[] totalCategory = {0};

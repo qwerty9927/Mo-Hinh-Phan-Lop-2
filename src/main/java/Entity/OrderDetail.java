@@ -13,7 +13,7 @@ public class OrderDetail {
     private byte Quantity;
 
     @Column
-    private Float Price;
+    private float Price;
 
     @ManyToOne
     @JoinColumn(name = "OrderID")
@@ -39,11 +39,11 @@ public class OrderDetail {
         Quantity = quantity;
     }
 
-    public Float getPrice() {
+    public float getPrice() {
         return Price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(float price) {
         Price = price;
     }
 

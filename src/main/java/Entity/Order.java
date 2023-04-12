@@ -15,7 +15,7 @@ public class Order {
     private Date Date;
 
     @Column
-    private Float Total;
+    private float Total;
 
     @Column
     private String Note;
@@ -43,11 +43,11 @@ public class Order {
         Date = date;
     }
 
-    public Float getTotal() {
+    public float getTotal() {
         return Total;
     }
 
-    public void setTotal(Float total) {
+    public void setTotal(float total) {
         Total = total;
     }
 
