@@ -31,6 +31,7 @@ public class StatisticalUI extends javax.swing.JFrame {
         table = new javax.swing.JTable();
         Month = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,7 +40,7 @@ public class StatisticalUI extends javax.swing.JFrame {
         tieude.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/analysis.png"))); // NOI18N
         tieude.setText(" THỐNG KÊ DOANH THU SẢN PHẨM");
-        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 390, -1));
+        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 390, -1));
 
         table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -63,12 +64,20 @@ public class StatisticalUI extends javax.swing.JFrame {
                 MonthActionPerformed(evt);
             }
         });
-        getContentPane().add(Month, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 150, -1));
+        getContentPane().add(Month, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/month.png"))); // NOI18N
-        jLabel1.setText("Month :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 120, 40));
+        jLabel1.setText(" Time:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 150, 40));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2020", "2021", "2022", "2023", "2024", "2025" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, 110, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(2000, 450));
@@ -81,6 +90,10 @@ public class StatisticalUI extends javax.swing.JFrame {
     private void MonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_MonthActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,6 +140,7 @@ public class StatisticalUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Month;
     private javax.swing.JLabel background;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
