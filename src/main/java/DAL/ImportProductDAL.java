@@ -23,7 +23,7 @@ public class ImportProductDAL {
         return vegetables;
     }
     
-    public ArrayList<Category> categoryList(){
+    public ArrayList categoryList(){
         Query query = session.createQuery("from Category", Category.class);
         ArrayList<Category> categories = (ArrayList<Category>) query.list();
         return categories;

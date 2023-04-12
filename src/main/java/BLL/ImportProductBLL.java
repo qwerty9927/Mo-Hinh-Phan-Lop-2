@@ -11,7 +11,7 @@ public class ImportProductBLL {
         ipDAL = new ImportProductDAL();
     }
     
-    public ArrayList productList(){
+    public ArrayList<Vegetable> productList(){
         return ipDAL.productList();
     }
     

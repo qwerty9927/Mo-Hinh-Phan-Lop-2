@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author MSIs
  */
-public class ImportProductUI extends javax.swing.JFrame {
+public class VegetableUI extends javax.swing.JFrame {
 
     ImportProductBLL ipBLL;
 
     /**
      * Creates new form INSTRUCTORINFORMATION
      */
-    public ImportProductUI() {
+    public VegetableUI() {
         initComponents();
         ipBLL = new ImportProductBLL();
         productList();
@@ -42,26 +42,29 @@ public class ImportProductUI extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
-        titlePanel = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
         informationPanel = new javax.swing.JPanel();
+        category = new javax.swing.JLabel();
         categoryDes = new javax.swing.JLabel();
         vegetableName = new javax.swing.JLabel();
         amount = new javax.swing.JLabel();
-        vegetableCB = new javax.swing.JComboBox<>();
+        categoryCB = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        description = new javax.swing.JTextArea();
+        txtVegName = new javax.swing.JTextField();
         txtAmount = new javax.swing.JTextField();
         decreaseBtn = new javax.swing.JButton();
         increaseBtn = new javax.swing.JButton();
         price = new javax.swing.JLabel();
         txtAmount1 = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
-        categoryName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnAdd1 = new javax.swing.JButton();
-        search = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
+        search = new javax.swing.JTextField();
         photoPanel = new javax.swing.JPanel();
         photo = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -71,50 +74,44 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        titlePanel.setOpaque(false);
-
-        title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/boxes.png"))); // NOI18N
-        title.setText("NHẬP HÀNG");
-
-        javax.swing.GroupLayout titlePanelLayout = new javax.swing.GroupLayout(titlePanel);
-        titlePanel.setLayout(titlePanelLayout);
-        titlePanelLayout.setHorizontalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(titlePanelLayout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(title)
-                .addContainerGap(181, Short.MAX_VALUE))
-        );
-        titlePanelLayout.setVerticalGroup(
-            titlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(titlePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        background.add(titlePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
-
         informationPanel.setOpaque(false);
 
+        category.setBackground(new java.awt.Color(0, 153, 255));
+        category.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        category.setLabelFor(categoryCB);
+        category.setText("Category");
+
         categoryDes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        categoryDes.setText("Category:");
+        categoryDes.setText("Category Description:");
 
         vegetableName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        vegetableName.setText("Vegetable:");
+        vegetableName.setText("Vegetable name:");
 
         amount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         amount.setText("Amout :");
 
-        vegetableCB.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        vegetableCB.addActionListener(new java.awt.event.ActionListener() {
+        categoryCB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        categoryCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vegetableCBActionPerformed(evt);
+                categoryCBActionPerformed(evt);
             }
         });
 
-        txtAmount.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        description.setEditable(false);
+        description.setColumns(20);
+        description.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        description.setLineWrap(true);
+        description.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(description);
+
+        txtVegName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtVegName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVegNameActionPerformed(evt);
+            }
+        });
+
+        txtAmount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtAmount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtAmount.setText("0");
         txtAmount.setMinimumSize(new java.awt.Dimension(100, 26));
@@ -125,7 +122,7 @@ public class ImportProductUI extends javax.swing.JFrame {
             }
         });
 
-        decreaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        decreaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         decreaseBtn.setText("-");
         decreaseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,7 +130,7 @@ public class ImportProductUI extends javax.swing.JFrame {
             }
         });
 
-        increaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        increaseBtn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         increaseBtn.setText("+");
         increaseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +141,6 @@ public class ImportProductUI extends javax.swing.JFrame {
         price.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         price.setText("Price:");
 
-        txtAmount1.setEditable(false);
         txtAmount1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtAmount1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtAmount1.setText("0");
@@ -158,7 +154,7 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd.setText("Import products");
+        btnAdd.setText("Add a new category");
         btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,15 +162,12 @@ public class ImportProductUI extends javax.swing.JFrame {
             }
         });
 
-        categoryName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        categoryName.setText("None");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setText("Or");
 
         btnAdd1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd1.setText("Add a new product");
+        btnAdd1.setText("Add vegetable");
         btnAdd1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,76 +180,82 @@ public class ImportProductUI extends javax.swing.JFrame {
         informationPanelLayout.setHorizontalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(informationPanelLayout.createSequentialGroup()
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(categoryDes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(vegetableName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(12, 12, 12)
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addComponent(vegetableCB, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(vegetableName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtVegName)
+                                    .addComponent(categoryCB, 0, 393, Short.MAX_VALUE)))
+                            .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informationPanelLayout.createSequentialGroup()
+                                .addComponent(categoryDes)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informationPanelLayout.createSequentialGroup()
+                                .addComponent(price)
+                                .addGap(145, 145, 145)
+                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAmount1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(informationPanelLayout.createSequentialGroup()
+                                        .addComponent(decreaseBtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(increaseBtn))))))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(informationPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                                .addComponent(btnAdd1))
-                            .addComponent(categoryName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(informationPanelLayout.createSequentialGroup()
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amount)
-                            .addComponent(price))
-                        .addGap(27, 27, 27)
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAmount1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnAdd))
                             .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addComponent(decreaseBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(increaseBtn)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAdd)))
-                .addContainerGap())
+                                .addComponent(btnAdd1)
+                                .addGap(8, 8, 8)))))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         informationPanelLayout.setVerticalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informationPanelLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vegetableCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(vegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdd1)
-                    .addComponent(jLabel1))
-                .addGap(11, 11, 11)
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(categoryName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(categoryDes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(price)
-                    .addComponent(txtAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(increaseBtn)
-                    .addComponent(decreaseBtn)
-                    .addComponent(amount))
+                    .addComponent(txtVegName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd)
-                .addContainerGap())
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(categoryCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAdd)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5)
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(decreaseBtn)
+                            .addComponent(increaseBtn)
+                            .addComponent(amount)))
+                    .addComponent(categoryDes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(price))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdd1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        background.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 610, 250));
-
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-        background.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 400, 30));
+        background.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 600, 370));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -264,7 +263,14 @@ public class ImportProductUI extends javax.swing.JFrame {
                 btnSearchActionPerformed(evt);
             }
         });
-        background.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 34, 30));
+        background.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 34, 30));
+
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+        background.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 400, 30));
 
         photoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
@@ -289,9 +295,25 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         background.add(photoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 150));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
+        btnBack.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
+        btnBack.setText("Back to importing");
+        btnBack.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        background.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/boxes.png"))); // NOI18N
+        title.setText("THÊM MỘT LOẠI RAU CỦ");
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
         bg.setText("jLabel2");
-        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 350));
+        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 450));
 
         jScrollPane1.setViewportView(table);
 
@@ -307,8 +329,8 @@ public class ImportProductUI extends javax.swing.JFrame {
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -316,7 +338,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -343,6 +365,22 @@ public class ImportProductUI extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtVegNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVegNameActionPerformed
+
+    private void categoryCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCBActionPerformed
+        if (categoryCB.getSelectedIndex() == 0) {
+            description.setText("");
+            return;
+        }
+        String item = (String) categoryCB.getSelectedItem();
+        String splitedStrings[] = item.split(" - ");
+        int id = Integer.parseInt(splitedStrings[0]);
+        String des = ipBLL.getCategory(id).getDescription();
+        description.setText(des);
+    }//GEN-LAST:event_categoryCBActionPerformed
 
     private void decreaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseBtnActionPerformed
         String amountString = txtAmount.getText();
@@ -376,21 +414,13 @@ public class ImportProductUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAmount1
 
-    private void vegetableCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vegetableCBActionPerformed
-        if (vegetableCB.getSelectedIndex() == 0) {
-            categoryName.setText("None");
-            return;
-        }
-        String item = (String) vegetableCB.getSelectedItem();
-        String splitedStrings[] = item.split(" - ");
-        int id = Integer.parseInt(splitedStrings[0]);
-        String des = ipBLL.getProduct(id).getCategory().getName();
-        categoryName.setText(des);
-    }//GEN-LAST:event_vegetableCBActionPerformed
-
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdd1ActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,14 +439,22 @@ public class ImportProductUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ImportProductUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VegetableUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ImportProductUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VegetableUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ImportProductUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VegetableUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ImportProductUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VegetableUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -429,16 +467,16 @@ public class ImportProductUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ImportProductUI().setVisible(true);
+                new VegetableUI().setVisible(true);
             }
         });
     }
 
     private void loadToCombobox() {
-        vegetableCB.addItem("--Select vegetable");
-        for (int i = 0; i < ipBLL.productList().size(); i++) {
-            String item = ipBLL.productList().get(i).getVegetableID() + " - " + ipBLL.productList().get(i).getVegetableName();
-            vegetableCB.addItem(item);
+        categoryCB.addItem("--Select category");
+        for (int i = 0; i < ipBLL.catgoryList().size(); i++) {
+            String item = ipBLL.catgoryList().get(i).getCatagoryID() + " - " + ipBLL.catgoryList().get(i).getName();
+            categoryCB.addItem(item);
         }
     }
 
@@ -469,14 +507,18 @@ public class ImportProductUI extends javax.swing.JFrame {
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JLabel category;
+    private javax.swing.JComboBox<String> categoryCB;
     private javax.swing.JLabel categoryDes;
-    private javax.swing.JLabel categoryName;
     private javax.swing.JButton decreaseBtn;
+    private javax.swing.JTextArea description;
     private javax.swing.JButton increaseBtn;
     private javax.swing.JPanel informationPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel photo;
     private javax.swing.JPanel photoPanel;
     private javax.swing.JLabel price;
@@ -484,10 +526,9 @@ public class ImportProductUI extends javax.swing.JFrame {
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel title;
-    private javax.swing.JPanel titlePanel;
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtAmount1;
-    private javax.swing.JComboBox<String> vegetableCB;
+    private javax.swing.JTextField txtVegName;
     private javax.swing.JLabel vegetableName;
     // End of variables declaration//GEN-END:variables
 }
