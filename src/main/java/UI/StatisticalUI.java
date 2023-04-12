@@ -4,16 +4,25 @@
  */
 package UI;
 
+import BLL.CategoryBLL;
+import BLL.StatisticalBLL;
+
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author MSIs
  */
 public class StatisticalUI extends javax.swing.JFrame {
 
+    private StatisticalBLL sBLL;
+    private CategoryBLL cBLL;
     /**
      * Creates new form NewJFrame
      */
     public StatisticalUI() {
+        sBLL = new StatisticalBLL();
+        cBLL = new CategoryBLL();
         initComponents();
     }
 
@@ -41,20 +50,6 @@ public class StatisticalUI extends javax.swing.JFrame {
         tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/analysis.png"))); // NOI18N
         tieude.setText(" THỐNG KÊ DOANH THU SẢN PHẨM");
         getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 390, -1));
-
-        table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Name Category", "Revenue"
-            }
-        ));
-        jScrollPane1.setViewportView(table);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 800, 490));
 
@@ -84,17 +79,44 @@ public class StatisticalUI extends javax.swing.JFrame {
         background.setPreferredSize(new java.awt.Dimension(1000, 450));
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 370));
 
+        table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
+                sBLL.convertStatistical(
+                        cBLL.getCategoryName(),
+                        sBLL.getRevenueOfCategory(
+                                Month.getSelectedIndex() + 1,
+                                Integer.parseInt(jComboBox1.getSelectedItem().toString())
+                        )
+                ), new String [] {
+                        "Name Category", "Revenue"
+                }
+        ));
+        jScrollPane1.setViewportView(table);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void MonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MonthActionPerformed
         // TODO add your handling code here:
+        reRenderTable();
     }//GEN-LAST:event_MonthActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+        reRenderTable();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
+    private void reRenderTable(){
+        table.setModel(new DefaultTableModel(sBLL.convertStatistical(
+                cBLL.getCategoryName(),
+                sBLL.getRevenueOfCategory(
+                        Month.getSelectedIndex() + 1,
+                        Integer.parseInt(jComboBox1.getSelectedItem().toString())
+                )
+        ), new String [] {
+                "Name Category", "Revenue"
+        }));
+    }
     /**
      * @param args the command line arguments
      */
