@@ -1,6 +1,5 @@
 package Entity;
 
-//import javax.persistence.*;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import java.util.List;
 public class Category {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int CatagoryID;
 
     @Column

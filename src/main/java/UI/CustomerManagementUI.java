@@ -8,12 +8,12 @@ package UI;
  *
  * @author MSIs
  */
-public class NHAPHANG extends javax.swing.JFrame {
+public class CustomerManagementUI extends javax.swing.JFrame {
 
     /**
-     * Creates new form INSTRUCTORINFORMATION
+     * Creates new form ONSITECOURSE
      */
-    public NHAPHANG() {
+    public CustomerManagementUI() {
         initComponents();
     }
 
@@ -30,66 +30,57 @@ public class NHAPHANG extends javax.swing.JFrame {
         Lastname = new javax.swing.JLabel();
         Firstname = new javax.swing.JLabel();
         Enrollmentdate = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         search = new javax.swing.JTextField();
         nutsearch = new javax.swing.JButton();
-        nuAadd2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        nuAadd2 = new javax.swing.JButton();
+        nutDelete = new javax.swing.JButton();
+        nutEdit = new javax.swing.JButton();
+        nutReset = new javax.swing.JButton();
+        jTextField6 = new javax.swing.JTextField();
         background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tieude.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/boxes.png"))); // NOI18N
-        tieude.setText("NHẬP HÀNG");
-        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 340, 40));
+        tieude.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        tieude.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/customer.png"))); // NOI18N
+        tieude.setText(" QUẢN LÝ KHÁCH HÀNG");
+        getContentPane().add(tieude, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, 285, -1));
 
         Lastname.setBackground(new java.awt.Color(0, 153, 255));
         Lastname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Lastname.setText("Name Category :");
-        getContentPane().add(Lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 176, 40));
+        Lastname.setText("Customers ID :");
+        getContentPane().add(Lastname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 140, 20));
 
         Firstname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Firstname.setText("Description Category :");
-        getContentPane().add(Firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, 40));
+        Firstname.setText("Password :");
+        getContentPane().add(Firstname, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 100, 20));
 
         Enrollmentdate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Enrollmentdate.setText("Name Vegetable :");
-        getContentPane().add(Enrollmentdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 160, 40));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Amout :");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, -1, -1));
+        Enrollmentdate.setText("Full Name:");
+        getContentPane().add(Enrollmentdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 160, 20));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 310, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 90, 280, -1));
 
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 310, -1));
-
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 180, 310, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 130, 280, -1));
 
         table.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -100,7 +91,7 @@ public class NHAPHANG extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Name Category", "Desciption Category", "Name Vegetable", "Amout", "Import Date"
+                "Costomer ID", "Full Name", "Password", "Address", "City"
             }
         ));
         jScrollPane1.setViewportView(table);
@@ -112,7 +103,7 @@ public class NHAPHANG extends javax.swing.JFrame {
                 searchActionPerformed(evt);
             }
         });
-        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 400, 30));
+        getContentPane().add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 320, 400, 30));
 
         nutsearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
         nutsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +111,29 @@ public class NHAPHANG extends javax.swing.JFrame {
                 nutsearchActionPerformed(evt);
             }
         });
-        getContentPane().add(nutsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 310, 34, 30));
+        getContentPane().add(nutsearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 34, 30));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Address :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 280, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("City :");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 245, -1, 30));
+
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 280, -1));
 
         nuAadd2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nuAadd2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
@@ -131,20 +144,47 @@ public class NHAPHANG extends javax.swing.JFrame {
                 nuAadd2ActionPerformed(evt);
             }
         });
-        getContentPane().add(nuAadd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 140, 90, -1));
+        getContentPane().add(nuAadd2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 90, -1));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Import Date :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, -1, -1));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 310, -1));
-
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        nutDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        nutDelete.setText("Delete");
+        nutDelete.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                nutDeleteActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 310, -1));
+        getContentPane().add(nutDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 120, 90, -1));
+
+        nutEdit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/edit.png"))); // NOI18N
+        nutEdit.setText("Edit");
+        nutEdit.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nutEditActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nutEdit, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 160, 90, -1));
+
+        nutReset.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nutReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/reset.png"))); // NOI18N
+        nutReset.setText("Reset");
+        nutReset.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nutReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nutResetActionPerformed(evt);
+            }
+        });
+        getContentPane().add(nutReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 90, -1));
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 280, -1));
 
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
         background.setMaximumSize(new java.awt.Dimension(2000, 450));
@@ -162,10 +202,6 @@ public class NHAPHANG extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
     private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchActionPerformed
@@ -174,13 +210,33 @@ public class NHAPHANG extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nutsearchActionPerformed
 
-    private void nuAadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuAadd2ActionPerformed
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nuAadd2ActionPerformed
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void nuAadd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuAadd2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuAadd2ActionPerformed
+
+    private void nutDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutDeleteActionPerformed
+
+    private void nutEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutEditActionPerformed
+
+    private void nutResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nutResetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nutResetActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,13 +255,13 @@ public class NHAPHANG extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NHAPHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerManagementUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NHAPHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerManagementUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NHAPHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerManagementUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NHAPHANG.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CustomerManagementUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -215,7 +271,7 @@ public class NHAPHANG extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NHAPHANG().setVisible(true);
+                new CustomerManagementUI().setVisible(true);
             }
         });
     }
@@ -227,14 +283,16 @@ public class NHAPHANG extends javax.swing.JFrame {
     private javax.swing.JLabel background;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JButton nuAadd2;
+    private javax.swing.JButton nutDelete;
+    private javax.swing.JButton nutEdit;
+    private javax.swing.JButton nutReset;
     private javax.swing.JButton nutsearch;
     private javax.swing.JTextField search;
     private javax.swing.JTable table;

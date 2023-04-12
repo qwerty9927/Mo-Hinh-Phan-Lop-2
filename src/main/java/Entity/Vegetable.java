@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class Vegetable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int VegetableID;
 
     @Column(name = "Vegetable_Name")
@@ -26,6 +27,9 @@ public class Vegetable {
     @ManyToOne
     @JoinColumn(name = "CatagoryID")
     private Category category;
+
+    @OneToOne(mappedBy = "vegetable")
+    private OrderDetail orderDetail;
 
     public int getVegetableID() {
         return VegetableID;
@@ -81,6 +85,14 @@ public class Vegetable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public OrderDetail getOrderDetail() {
+        return orderDetail;
+    }
+
+    public void setOrderDetail(OrderDetail orderDetail) {
+        this.orderDetail = orderDetail;
     }
 
     @Override

@@ -18,10 +18,16 @@
         <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
         <!-- Show all executed SQL to console -->
         <property name="show_sql">true</property>
+        <property
+                name="hibernate.globally_quoted_identifiers"
+        >true</property>
         <!--        <property name="transform_hbm_xml.enabled">true</property>-->
         <!-- Entity mapping -->
         <mapping class="Entity.Category" />
         <mapping class="Entity.Vegetable" />
+        <mapping class="Entity.Order" />
+        <mapping class="Entity.OrderDetail" />
+        <mapping class="Entity.Customers" />
         <!--        <mapping resource = "Department.hbm.xml"/>-->
     </session-factory>
 </hibernate-configuration>
