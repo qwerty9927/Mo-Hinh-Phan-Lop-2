@@ -31,7 +31,7 @@ public class ImportProductUI extends javax.swing.JFrame {
     public ImportProductUI() {
         initComponents();
         ipBLL = new ImportProductBLL();
-        vegetableList();
+        vegetableList(ipBLL.vegetableList());
         loadToCombobox();
     }
 
@@ -60,10 +60,10 @@ public class ImportProductUI extends javax.swing.JFrame {
         btnImport = new javax.swing.JButton();
         categoryName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnAdd1 = new javax.swing.JButton();
+        btnAddVeg = new javax.swing.JButton();
         amount1 = new javax.swing.JLabel();
         txtAvailable = new javax.swing.JTextField();
-        search = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         photoPanel = new javax.swing.JPanel();
         photo = new javax.swing.JLabel();
@@ -193,13 +193,13 @@ public class ImportProductUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Or");
 
-        btnAdd1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd1.setText("Add a new vegetable");
-        btnAdd1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddVeg.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnAddVeg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        btnAddVeg.setText("Add a new vegetable");
+        btnAddVeg.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAddVeg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnAddVegActionPerformed(evt);
             }
         });
 
@@ -239,7 +239,7 @@ public class ImportProductUI extends javax.swing.JFrame {
                                 .addGap(0, 189, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAdd1))
+                                .addComponent(btnAddVeg))
                             .addGroup(informationPanelLayout.createSequentialGroup()
                                 .addComponent(categoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
@@ -277,7 +277,7 @@ public class ImportProductUI extends javax.swing.JFrame {
                     .addComponent(vegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd1)
+                    .addComponent(btnAddVeg)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,12 +304,12 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         background.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 590, 350));
 
-        search.addActionListener(new java.awt.event.ActionListener() {
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
+                txtSearchActionPerformed(evt);
             }
         });
-        background.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 400, 30));
+        background.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 410, 400, 30));
 
         btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -389,12 +389,13 @@ public class ImportProductUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchActionPerformed
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        String name = txtSearch.getText();
+        vegetableList(ipBLL.findVegetable(name));
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
@@ -404,18 +405,18 @@ public class ImportProductUI extends javax.swing.JFrame {
         int availableAmount = Integer.parseInt(txtAvailable.getText());
         int importAmount = Integer.parseInt(txtAmount.getText());
         int updateAmount = availableAmount + importAmount;
-        Vegetable v= ipBLL.getVegetable(vegetableID);
+        Vegetable v = ipBLL.getVegetable(vegetableID);
         v.setAmount(updateAmount);
-        int result = JOptionPane.showConfirmDialog(this, "Import " + txtAmount.getText() +" for this vegetable?",
+        int result = JOptionPane.showConfirmDialog(this, "Import " + txtAmount.getText() + " for this vegetable?",
                 "Confirmation",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        
+
         if (result == JOptionPane.YES_OPTION) {
             if (ipBLL.updateVegetable(v)) {
                 JOptionPane.showMessageDialog(this,
                         "Vegeyable imported successfully!");
-                vegetableList();
+                vegetableList(ipBLL.vegetableList());
                 emptyFields();
             }
         }
@@ -466,25 +467,25 @@ public class ImportProductUI extends javax.swing.JFrame {
         categoryName.setText(des);
     }//GEN-LAST:event_vegetableCBActionPerformed
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void btnAddVegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVegActionPerformed
         VegetableUI vegetableUI = new VegetableUI();
         vegetableUI.setVisible(true);
-    }//GEN-LAST:event_btnAdd1ActionPerformed
+    }//GEN-LAST:event_btnAddVegActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         int index = table.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
-        
+
         int vegetableID = (int) model.getValueAt(index, 0);
         System.out.println(vegetableID);
         Vegetable v = ipBLL.getVegetable(vegetableID);
-        
+
         for (int i = 1; i < vegetableCB.getItemCount(); i++) {
             if (vegetableID == getIDFromCB(i)) {
                 vegetableCB.setSelectedIndex(i);
             }
         }
-        
+
         txtAvailable.setText(String.valueOf(model.getValueAt(index, 2)));
         txtPrice.setText(String.valueOf(model.getValueAt(index, 3)));
     }//GEN-LAST:event_tableMouseClicked
@@ -496,22 +497,22 @@ public class ImportProductUI extends javax.swing.JFrame {
     private void txtAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAmountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAmountActionPerformed
-    
-    private void emptyFields(){
+
+    private void emptyFields() {
         vegetableCB.setSelectedIndex(0);
         categoryName.setText("None");
         txtPrice.setText("");
         txtAvailable.setText("");
         txtAmount.setText("");
     }
-    
-    private int getIDFromCB(int index){
+
+    private int getIDFromCB(int index) {
         String fullString = vegetableCB.getItemAt(index);
         String spiltedString[] = fullString.split(" - ");
         int id = Integer.parseInt(spiltedString[0]);
         return id;
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -562,11 +563,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         }
     }
 
-    private void vegetableList() {
-        table.setModel(model(ipBLL.vegetableList()));
-    }
-
-    private DefaultTableModel model(ArrayList list) {
+    private void vegetableList(ArrayList list) {
         String[] columnNames = {"ID", "Vegetable Name", "Amount", "Price"};
         System.out.println(list.size());
         Object[][] data = new Object[list.size()][4];
@@ -578,15 +575,15 @@ public class ImportProductUI extends javax.swing.JFrame {
             data[i][3] = vegetable.getPrice();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        return model;
+        table.setModel(model);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amount;
     private javax.swing.JLabel amount1;
     private javax.swing.JPanel background;
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnAddVeg;
     private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel categoryDes;
@@ -599,7 +596,6 @@ public class ImportProductUI extends javax.swing.JFrame {
     private javax.swing.JLabel photo;
     private javax.swing.JPanel photoPanel;
     private javax.swing.JLabel price;
-    private javax.swing.JTextField search;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel title;
@@ -607,6 +603,7 @@ public class ImportProductUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtAvailable;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JComboBox<String> vegetableCB;
     private javax.swing.JLabel vegetableName;
     // End of variables declaration//GEN-END:variables
