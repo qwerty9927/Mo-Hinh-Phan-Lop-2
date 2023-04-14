@@ -7,22 +7,22 @@ import Entity.Vegetable;
 public class Main {
 
     public static void main(String[] args) {
-        //Chưa có Categor
-        ImportProductBLL ipBLL = new ImportProductBLL();
-        Category c = ipBLL.getCategory(2);
-        Vegetable v = new Vegetable();
-        System.out.println();
-
-        //Hiển thị danh sách rau củ
-        for (Object vObject : ipBLL.productList()) {
-            Vegetable vegetable = (Vegetable) vObject;
-            System.out.println(vegetable);
-        }
-
-        for (Object vObject : ipBLL.catgoryList()) {
-            Category category = (Category) vObject;
-            System.out.println(category);
-        }
+//        //Chưa có Category
+//        ImportProductBLL ipBLL = new ImportProductBLL();
+//        Category c = ipBLL.getCategory(2);
+//        Vegetable v = new Vegetable();
+//        System.out.println();
+//
+//        //Hiển thị danh sách rau củ
+//        for (Object vObject : ipBLL.productList()) {
+//            Vegetable vegetable = (Vegetable) vObject;
+//            System.out.println(vegetable);
+//        }
+//
+//        for (Object vObject : ipBLL.catgoryList()) {
+//            Category category = (Category) vObject;
+//            System.out.println(category);
+//        }
 //        //Thêm 1 loại rau mới
 //        v.setCategory(c);
 //        v.setVegetableName("Zucchini");

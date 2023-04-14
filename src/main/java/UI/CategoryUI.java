@@ -6,6 +6,7 @@ package UI;
 
 import BLL.ImportProductBLL;
 import Entity.Category;
+import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -60,7 +61,7 @@ public class CategoryUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -79,7 +80,7 @@ public class CategoryUI extends javax.swing.JFrame {
         txtDescription.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(txtDescription);
 
-        txtCategory.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtCategory.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoryActionPerformed(evt);
@@ -151,7 +152,7 @@ public class CategoryUI extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        btnBack.setText("Back to adding vegetable");
+        btnBack.setText("Back");
         btnBack.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,8 +163,8 @@ public class CategoryUI extends javax.swing.JFrame {
 
         title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/category.png"))); // NOI18N
-        title.setText("THÊM MỘT PHÂN LOẠI RAU CỦ");
-        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+        title.setText("QUẢN LÝ PHÂN LOẠI RAU CỦ");
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
 
         jPanel1.setOpaque(false);
 
@@ -237,7 +238,7 @@ public class CategoryUI extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
         bg.setText("jLabel2");
-        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 310));
+        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 310));
 
         table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,14 +253,14 @@ public class CategoryUI extends javax.swing.JFrame {
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -275,7 +276,7 @@ public class CategoryUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -292,6 +293,7 @@ public class CategoryUI extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         if (!txtCategory.getText().trim().equals("") && !txtDescription.getText().trim().equals("")) {
+            
             Category newCategory = new Category();
             newCategory.setName(txtCategory.getText());
             newCategory.setDescription(txtDescription.getText());
@@ -300,6 +302,7 @@ public class CategoryUI extends javax.swing.JFrame {
                     "Confimation",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
+            
             if (result == JOptionPane.YES_OPTION) {
                 if (ipBLL.createCategory(newCategory)) {
                     JOptionPane.showMessageDialog(this,
@@ -312,7 +315,7 @@ public class CategoryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
+        dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rowClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rowClicked
@@ -361,8 +364,13 @@ public class CategoryUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnUpdActionPerformed
-
+    private void emptyFields(){
+        txtID.setText("");
+        txtCategory.setText("");
+        txtDescription.setText("");
+    }    
     private void btnRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefActionPerformed
+        emptyFields();
         categoryList(ipBLL.categoryList());
     }//GEN-LAST:event_btnRefActionPerformed
 
@@ -454,19 +462,6 @@ public class CategoryUI extends javax.swing.JFrame {
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table.setModel(model);
-    }
-
-    private DefaultTableModel model(ArrayList list) {
-        String[] columnNames = {"ID", "Category Name", "Description"};
-        Object[][] data = new Object[list.size()][3];
-        for (int i = 0; i < list.size(); i++) {
-            Category category = (Category) list.get(i);
-            data[i][0] = category.getCatagoryID();
-            data[i][1] = category.getName();
-            data[i][2] = category.getDescription();
-        }
-        DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        return model;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

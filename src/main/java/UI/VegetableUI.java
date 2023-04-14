@@ -33,7 +33,7 @@ public class VegetableUI extends javax.swing.JFrame {
         vegetableList(ipBLL.vegetableList());
         loadToCombobox();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +80,7 @@ public class VegetableUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -333,7 +333,7 @@ public class VegetableUI extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
-        btnBack.setText("Back to importing");
+        btnBack.setText("Back");
         btnBack.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -455,8 +455,8 @@ public class VegetableUI extends javax.swing.JFrame {
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tablePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -471,8 +471,8 @@ public class VegetableUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -505,7 +505,7 @@ public class VegetableUI extends javax.swing.JFrame {
     }
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -596,6 +596,7 @@ public class VegetableUI extends javax.swing.JFrame {
 
     private void btnRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefActionPerformed
         emptyFields();
+        loadToCombobox();
         vegetableList(ipBLL.vegetableList());
     }//GEN-LAST:event_btnRefActionPerformed
 
@@ -627,7 +628,8 @@ public class VegetableUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoryActionPerformed
-        
+        CategoryUI categoryUI = new CategoryUI();
+        categoryUI.setVisible(true);
     }//GEN-LAST:event_btnAddCategoryActionPerformed
 
     private void txtPrice(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrice
@@ -745,7 +747,6 @@ public class VegetableUI extends javax.swing.JFrame {
 
     private void vegetableList(ArrayList list) {
         String[] columnNames = {"ID", "Vegetable Name", "Category", "Unit", "Amount", "Price"};
-        System.out.println(list.size());
         Object[][] data = new Object[list.size()][6];
         for (int i = 0; i < list.size(); i++) {
             Vegetable vegetable = (Vegetable) list.get(i);
