@@ -28,7 +28,7 @@ public class ImportProductUI extends javax.swing.JFrame {
     public ImportProductUI() {
         initComponents();
         ipBLL = new ImportProductBLL();
-        productList();
+        vegetableList();
         loadToCombobox();
     }
 
@@ -384,7 +384,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         String item = (String) vegetableCB.getSelectedItem();
         String splitedStrings[] = item.split(" - ");
         int id = Integer.parseInt(splitedStrings[0]);
-        String des = ipBLL.getProduct(id).getCategory().getName();
+        String des = ipBLL.getVegetable(id).getCategory().getName();
         categoryName.setText(des);
     }//GEN-LAST:event_vegetableCBActionPerformed
 
@@ -436,14 +436,14 @@ public class ImportProductUI extends javax.swing.JFrame {
 
     private void loadToCombobox() {
         vegetableCB.addItem("--Select vegetable");
-        for (int i = 0; i < ipBLL.productList().size(); i++) {
-            String item = ipBLL.productList().get(i).getVegetableID() + " - " + ipBLL.productList().get(i).getVegetableName();
+        for (int i = 0; i < ipBLL.vegetableList().size(); i++) {
+            String item = ipBLL.vegetableList().get(i).getVegetableID() + " - " + ipBLL.vegetableList().get(i).getVegetableName();
             vegetableCB.addItem(item);
         }
     }
 
-    private void productList() {
-        table.setModel(model(ipBLL.productList()));
+    private void vegetableList() {
+        table.setModel(model(ipBLL.vegetableList()));
     }
 
     private DefaultTableModel model(ArrayList list) {
@@ -454,8 +454,8 @@ public class ImportProductUI extends javax.swing.JFrame {
             Vegetable vegetable = (Vegetable) list.get(i);
             data[i][0] = vegetable.getVegetableID();
             data[i][1] = vegetable.getVegetableName();
-            data[i][3] = vegetable.getAmount();
-            data[i][4] = vegetable.getPrice();
+            data[i][2] = vegetable.getAmount();
+            data[i][3] = vegetable.getPrice();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         return model;

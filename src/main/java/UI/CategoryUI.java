@@ -6,6 +6,7 @@ package UI;
 
 import BLL.ImportProductBLL;
 import Entity.Category;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,7 @@ public class CategoryUI extends javax.swing.JFrame {
     public CategoryUI() {
         initComponents();
         ipBLL = new ImportProductBLL();
-        categoryList();
+        categoryList(ipBLL.categoryList());
     }
 
     /**
@@ -46,7 +47,7 @@ public class CategoryUI extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         id = new javax.swing.JLabel();
         btnSearch = new javax.swing.JButton();
-        search = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -141,12 +142,12 @@ public class CategoryUI extends javax.swing.JFrame {
         });
         background.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 270, 34, 30));
 
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
             }
         });
-        background.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 400, 30));
+        background.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 400, 30));
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
@@ -229,10 +230,10 @@ public class CategoryUI extends javax.swing.JFrame {
                 .addComponent(btnUpd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRef)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, -1, 170));
+        background.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, -1, 180));
 
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
         bg.setText("jLabel2");
@@ -280,12 +281,9 @@ public class CategoryUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        String name = txtSearch.getText();
+        categoryList(ipBLL.findCategory(name));
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void txtCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoryActionPerformed
@@ -306,7 +304,7 @@ public class CategoryUI extends javax.swing.JFrame {
                 if (ipBLL.createCategory(newCategory)) {
                     JOptionPane.showMessageDialog(this,
                             "Category added successfully!");
-                    categoryList();
+                    categoryList(ipBLL.categoryList());
                 }
             }
 
@@ -314,7 +312,7 @@ public class CategoryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rowClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rowClicked
@@ -336,7 +334,7 @@ public class CategoryUI extends javax.swing.JFrame {
             if (ipBLL.removeCategory(ipBLL.getCategory(id))) {
                 JOptionPane.showMessageDialog(this,
                         "Category deleted successfully!");
-                categoryList();
+                categoryList(ipBLL.categoryList());
             }
         }
     }//GEN-LAST:event_btnDelActionPerformed
@@ -350,7 +348,7 @@ public class CategoryUI extends javax.swing.JFrame {
         int id = Integer.parseInt(txtID.getText());
         String name = txtCategory.getText();
         String des = txtDescription.getText();
-        
+
         Category updCategory = new Category();
         updCategory.setCatagoryID(id);
         updCategory.setName(name);
@@ -359,18 +357,25 @@ public class CategoryUI extends javax.swing.JFrame {
             if (ipBLL.updateCategory(updCategory)) {
                 JOptionPane.showMessageDialog(this,
                         "Category updated successfully!");
-                categoryList();
+                categoryList(ipBLL.categoryList());
             }
         }
     }//GEN-LAST:event_btnUpdActionPerformed
 
     private void btnRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefActionPerformed
-        categoryList();
+        categoryList(ipBLL.categoryList());
     }//GEN-LAST:event_btnRefActionPerformed
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String name = txtSearch.getText();
+            categoryList(ipBLL.findCategory(name));
+        }
+    }//GEN-LAST:event_txtSearchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -438,8 +443,17 @@ public class CategoryUI extends javax.swing.JFrame {
         });
     }
 
-    private void categoryList() {
-        table.setModel(model(ipBLL.catgoryList()));
+    private void categoryList(ArrayList list) {
+        String[] columnNames = {"ID", "Category Name", "Description"};
+        Object[][] data = new Object[list.size()][3];
+        for (int i = 0; i < list.size(); i++) {
+            Category category = (Category) list.get(i);
+            data[i][0] = category.getCatagoryID();
+            data[i][1] = category.getName();
+            data[i][2] = category.getDescription();
+        }
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        table.setModel(model);
     }
 
     private DefaultTableModel model(ArrayList list) {
@@ -470,13 +484,13 @@ public class CategoryUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField search;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtCategory;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JLabel vegetableName;
     // End of variables declaration//GEN-END:variables
 }

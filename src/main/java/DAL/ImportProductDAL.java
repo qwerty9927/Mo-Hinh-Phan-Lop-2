@@ -17,67 +17,67 @@ public class ImportProductDAL {
 //        session.beginTransaction();
     }
 
-    public ArrayList productList() {
+    public ArrayList vegetableList() {
         Query query = session.createQuery("from Vegetable", Vegetable.class);
         ArrayList<Vegetable> vegetables = (ArrayList<Vegetable>) query.list();
         return vegetables;
     }
-    
-    public ArrayList categoryList(){
+
+    public ArrayList categoryList() {
         Query query = session.createQuery("from Category", Category.class);
         ArrayList<Category> categories = (ArrayList<Category>) query.list();
         return categories;
     }
-    
+
     public boolean createVegetable(Vegetable v) {
+        session.beginTransaction();
         session.persist(v);
-        session.flush();
-        session.clear();
+        session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
+
     public boolean createCategory(Category c) {
         session.beginTransaction();
         session.persist(c);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
-    public boolean removeVegetable(int id){
-        Vegetable v = getVegetable(id); 
+
+    public boolean removeVegetable(Vegetable v) {
+        session.beginTransaction();
         session.remove(v);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
-    public boolean removeCategory(Category c){
+
+    public boolean removeCategory(Category c) {
         session.beginTransaction();
         session.remove(c);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
-    public boolean updateVegetable(Vegetable v){
+
+    public boolean updateVegetable(Vegetable v) {
         session.beginTransaction();
         session.merge(v);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
-    public boolean updateCategory(Category c){
+
+    public boolean updateCategory(Category c) {
         session.beginTransaction();
         session.merge(c);
         session.getTransaction().commit();
         return session.getTransaction().getStatus() == TransactionStatus.COMMITTED;
     }
-    
+
     public Vegetable getVegetable(int Id) {
         Vegetable v = session.get(Vegetable.class, Id);
         return v;
     }
-    
-    public Category getCategory(int Id){
-        Category c = (Category)session.get(Category.class, Id);
+
+    public Category getCategory(int Id) {
+        Category c = session.get(Category.class, Id);
         return c;
     }
 }

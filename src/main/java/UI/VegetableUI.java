@@ -8,10 +8,12 @@ import BLL.ImportProductBLL;
 import Entity.Category;
 import Entity.Vegetable;
 import com.mysql.cj.x.protobuf.MysqlxDatatypes;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -28,7 +30,7 @@ public class VegetableUI extends javax.swing.JFrame {
     public VegetableUI() {
         initComponents();
         ipBLL = new ImportProductBLL();
-        productList();
+        vegetableList(ipBLL.vegetableList());
         loadToCombobox();
     }
 
@@ -43,28 +45,36 @@ public class VegetableUI extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         informationPanel = new javax.swing.JPanel();
-        category = new javax.swing.JLabel();
         categoryDes = new javax.swing.JLabel();
         vegetableName = new javax.swing.JLabel();
+        category = new javax.swing.JLabel();
         amount = new javax.swing.JLabel();
         categoryCB = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        description = new javax.swing.JTextArea();
+        txtDescription = new javax.swing.JTextArea();
         txtVegName = new javax.swing.JTextField();
         txtAmount = new javax.swing.JTextField();
         decreaseBtn = new javax.swing.JButton();
         increaseBtn = new javax.swing.JButton();
         price = new javax.swing.JLabel();
-        txtAmount1 = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        txtPrice = new javax.swing.JTextField();
+        btnAddCategory = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        btnAdd1 = new javax.swing.JButton();
-        btnSearch = new javax.swing.JButton();
-        search = new javax.swing.JTextField();
+        lblID = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        lblUnit = new javax.swing.JLabel();
+        txtUnit = new javax.swing.JTextField();
         photoPanel = new javax.swing.JPanel();
         photo = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        txtSearch = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
         title = new javax.swing.JLabel();
+        functionsPanel = new javax.swing.JPanel();
+        btnAdd = new javax.swing.JButton();
+        btnDel = new javax.swing.JButton();
+        btnUpd = new javax.swing.JButton();
+        btnRef = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -76,18 +86,22 @@ public class VegetableUI extends javax.swing.JFrame {
 
         informationPanel.setOpaque(false);
 
-        category.setBackground(new java.awt.Color(0, 153, 255));
-        category.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        category.setLabelFor(categoryCB);
-        category.setText("Category");
-
         categoryDes.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        categoryDes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         categoryDes.setText("Category Description:");
 
         vegetableName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        vegetableName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         vegetableName.setText("Vegetable name:");
 
+        category.setBackground(new java.awt.Color(0, 153, 255));
+        category.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        category.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        category.setLabelFor(categoryCB);
+        category.setText("Category");
+
         amount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        amount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         amount.setText("Amout :");
 
         categoryCB.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -97,13 +111,13 @@ public class VegetableUI extends javax.swing.JFrame {
             }
         });
 
-        description.setEditable(false);
-        description.setColumns(20);
-        description.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        description.setLineWrap(true);
-        description.setWrapStyleWord(true);
-        description.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane2.setViewportView(description);
+        txtDescription.setEditable(false);
+        txtDescription.setColumns(20);
+        txtDescription.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtDescription.setLineWrap(true);
+        txtDescription.setWrapStyleWord(true);
+        txtDescription.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(txtDescription);
 
         txtVegName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtVegName.addActionListener(new java.awt.event.ActionListener() {
@@ -140,161 +154,182 @@ public class VegetableUI extends javax.swing.JFrame {
         });
 
         price.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        price.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         price.setText("Price:");
 
-        txtAmount1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtAmount1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtAmount1.setText("0");
-        txtAmount1.setMinimumSize(new java.awt.Dimension(100, 26));
-        txtAmount1.setPreferredSize(new java.awt.Dimension(100, 30));
-        txtAmount1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPrice.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtPrice.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtPrice.setText("0");
+        txtPrice.setMinimumSize(new java.awt.Dimension(100, 26));
+        txtPrice.setPreferredSize(new java.awt.Dimension(100, 30));
+        txtPrice.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtAmount1(evt);
+                txtPrice(evt);
             }
         });
 
-        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd.setText("Add a new category");
-        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnAddCategory.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAddCategory.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        btnAddCategory.setText("Add a new category");
+        btnAddCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnAddCategoryActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Or");
 
-        btnAdd1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd1.setText("Add vegetable");
-        btnAdd1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        lblID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblID.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblID.setText("ID:");
+
+        txtID.setEditable(false);
+        txtID.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
+
+        lblUnit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblUnit.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUnit.setText("Unit:");
+
+        txtUnit.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        txtUnit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUnitActionPerformed(evt);
+            }
+        });
+
+        photoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/vegetable.png"))); // NOI18N
+
+        javax.swing.GroupLayout photoPanelLayout = new javax.swing.GroupLayout(photoPanel);
+        photoPanel.setLayout(photoPanelLayout);
+        photoPanelLayout.setHorizontalGroup(
+            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, photoPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        photoPanelLayout.setVerticalGroup(
+            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(photoPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(photo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout informationPanelLayout = new javax.swing.GroupLayout(informationPanel);
         informationPanel.setLayout(informationPanelLayout);
         informationPanelLayout.setHorizontalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informationPanelLayout.createSequentialGroup()
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGap(6, 6, 6)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addComponent(categoryDes)
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addComponent(lblUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(decreaseBtn)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(increaseBtn))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addComponent(price, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(category, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(vegetableName, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtVegName)
-                                    .addComponent(categoryCB, 0, 393, Short.MAX_VALUE)))
-                            .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informationPanelLayout.createSequentialGroup()
-                                .addComponent(categoryDes)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, informationPanelLayout.createSequentialGroup()
-                                .addComponent(price)
-                                .addGap(145, 145, 145)
-                                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtAmount1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(informationPanelLayout.createSequentialGroup()
-                                        .addComponent(decreaseBtn)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(increaseBtn))))))
+                        .addComponent(btnAddCategory))
                     .addGroup(informationPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(vegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAdd))
-                            .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addComponent(btnAdd1)
-                                .addGap(8, 8, 8)))))
-                .addContainerGap(9, Short.MAX_VALUE))
+                                .addGap(2, 2, 2)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtVegName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoryCB, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addComponent(photoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         informationPanelLayout.setVerticalGroup(
             informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(informationPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(vegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVegName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(categoryCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(6, 6, 6)
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(informationPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(vegetableName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(category, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
                         .addGap(5, 5, 5)
-                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(decreaseBtn)
-                            .addComponent(increaseBtn)
-                            .addComponent(amount)))
-                    .addComponent(categoryDes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(txtVegName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(categoryCB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(photoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
                 .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAmount1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(price))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1))
+                    .addComponent(btnAddCategory))
+                .addGap(6, 6, 6)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(categoryDes, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(informationPanelLayout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(lblUnit))
+                            .addGroup(informationPanelLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(txtUnit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(informationPanelLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(decreaseBtn))
+                            .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(informationPanelLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addComponent(increaseBtn))))
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(amount)))
+                .addGap(6, 6, 6)
+                .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(informationPanelLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(price))
+                    .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        background.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 600, 370));
-
-        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
-        btnSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSearchActionPerformed(evt);
-            }
-        });
-        background.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 34, 30));
-
-        search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchActionPerformed(evt);
-            }
-        });
-        background.add(search, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 400, 30));
-
-        photoPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/def-veg 1.jpg"))); // NOI18N
-
-        javax.swing.GroupLayout photoPanelLayout = new javax.swing.GroupLayout(photoPanel);
-        photoPanel.setLayout(photoPanelLayout);
-        photoPanelLayout.setHorizontalGroup(
-            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(photoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        photoPanelLayout.setVerticalGroup(
-            photoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(photoPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(photo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
-        );
-
-        background.add(photoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 150));
+        background.add(informationPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/back.png"))); // NOI18N
@@ -307,15 +342,105 @@ public class VegetableUI extends javax.swing.JFrame {
         });
         background.add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSearchKeyPressed(evt);
+            }
+        });
+        background.add(txtSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 470, 420, 30));
+
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/find.png"))); // NOI18N
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
+        background.add(btnSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 470, 34, 30));
+
         title.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         title.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/boxes.png"))); // NOI18N
-        title.setText("THÊM MỘT LOẠI RAU CỦ");
-        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        title.setText("QUẢN LÝ RAU CỦ");
+        background.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 16, -1, -1));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
+        functionsPanel.setOpaque(false);
+
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
+
+        btnDel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnDel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/delete.png"))); // NOI18N
+        btnDel.setText("Remove");
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
+            }
+        });
+
+        btnUpd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnUpd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/update.png"))); // NOI18N
+        btnUpd.setText("Update");
+        btnUpd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdActionPerformed(evt);
+            }
+        });
+
+        btnRef.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRef.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/refresh.png"))); // NOI18N
+        btnRef.setText("Refresh");
+        btnRef.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout functionsPanelLayout = new javax.swing.GroupLayout(functionsPanel);
+        functionsPanel.setLayout(functionsPanelLayout);
+        functionsPanelLayout.setHorizontalGroup(
+            functionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(functionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(functionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(functionsPanelLayout.createSequentialGroup()
+                        .addGroup(functionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnUpd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnRef, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        functionsPanelLayout.setVerticalGroup(
+            functionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(functionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUpd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRef)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        background.add(functionsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
+
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.png"))); // NOI18N
         bg.setText("jLabel2");
-        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 450));
+        background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 516));
 
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rowClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
@@ -324,7 +449,7 @@ public class VegetableUI extends javax.swing.JFrame {
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         tablePanelLayout.setVerticalGroup(
@@ -339,49 +464,186 @@ public class VegetableUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tablePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(6, 6, 6)
                 .addComponent(tablePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchActionPerformed
-
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+        String name = txtSearch.getText();
+        vegetableList(ipBLL.findVegetable(name));
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private boolean hasEmptyField() {
+        boolean check = false;
+        if (txtVegName.getText().trim().equals("")
+                || categoryCB.getSelectedIndex() == 0
+                || txtAmount.getText().trim().equals("")
+                || txtPrice.getText().trim().equals("")) {
+            check = true;
+        }
+        return check;
+    }
+    
+    private void emptyFields(){
+        txtID.setText("");
+        txtVegName.setText("");
+        categoryCB.setSelectedIndex(0);
+        txtDescription.setText("");
+        txtUnit.setText("");
+        txtAmount.setText("");
+        txtPrice.setText("");
+    }
+    
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        if (!hasEmptyField()) {
+            Vegetable newVegetable = new Vegetable();
+
+            newVegetable.setVegetableName(txtVegName.getText());
+
+            String item = (String) categoryCB.getSelectedItem();
+            String splitedStrings[] = item.split(" - ");
+            int id = Integer.parseInt(splitedStrings[0]);
+            newVegetable.setCategory(ipBLL.getCategory(id));
+
+            newVegetable.setUnit(txtUnit.getText());
+
+            int amount = Integer.parseInt(txtAmount.getText());
+            newVegetable.setAmount(amount);
+
+            newVegetable.setImage("/images/vegetable");
+
+            Double price = Double.parseDouble(txtPrice.getText());
+            newVegetable.setPrice(price);
+
+            int result = JOptionPane.showConfirmDialog(this, "Add new vegetable?",
+                    "Confimation",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+            if (result == JOptionPane.YES_OPTION) {
+                if (ipBLL.createVegetable(newVegetable)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Vegetable added successfully!");
+                    vegetableList(ipBLL.vegetableList());
+                }
+            }
+
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void txtVegNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVegNameActionPerformed
-
-    private void categoryCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCBActionPerformed
-        if (categoryCB.getSelectedIndex() == 0) {
-            description.setText("");
-            return;
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        System.out.println(Integer.valueOf(txtID.getText()));
+        int result = JOptionPane.showConfirmDialog(this, "Delete this vegetable?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        int id = Integer.parseInt(txtID.getText());
+        if (result == JOptionPane.YES_OPTION) {
+            if (ipBLL.removeVegetable(ipBLL.getVegetable(id))) {
+                JOptionPane.showMessageDialog(this,
+                        "Category deleted successfully!");
+                vegetableList(ipBLL.categoryList());
+            }
         }
+    }//GEN-LAST:event_btnDelActionPerformed
+
+    private void btnUpdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdActionPerformed
+        Vegetable vegetable = new Vegetable();
+        
+        vegetable.setVegetableID(Integer.parseInt(txtID.getText()));
+        
+        vegetable.setVegetableName(txtVegName.getText());
+
         String item = (String) categoryCB.getSelectedItem();
         String splitedStrings[] = item.split(" - ");
         int id = Integer.parseInt(splitedStrings[0]);
-        String des = ipBLL.getCategory(id).getDescription();
-        description.setText(des);
-    }//GEN-LAST:event_categoryCBActionPerformed
+        vegetable.setCategory(ipBLL.getCategory(id));
+
+        vegetable.setUnit(txtUnit.getText());
+
+        vegetable.setAmount(Integer.parseInt(txtAmount.getText()));
+
+        vegetable.setImage("/images/vegetable");
+        
+        vegetable.setPrice(Double.valueOf(txtPrice.getText()));
+        
+        int result = JOptionPane.showConfirmDialog(this, "Update this vegetable?",
+                "Confirmation",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        
+        if (result == JOptionPane.YES_OPTION) {
+            if (ipBLL.updateVegetable(vegetable)) {
+                JOptionPane.showMessageDialog(this,
+                        "Vegetable updated successfully!");
+                vegetableList(ipBLL.vegetableList());
+            }
+        }
+    }//GEN-LAST:event_btnUpdActionPerformed
+
+    private void btnRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefActionPerformed
+        emptyFields();
+        vegetableList(ipBLL.vegetableList());
+    }//GEN-LAST:event_btnRefActionPerformed
+
+    private void rowClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rowClicked
+        int index = table.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+        txtID.setText(String.valueOf(model.getValueAt(index, 0)));
+        txtVegName.setText(String.valueOf(model.getValueAt(index, 1)));
+        String categoryName = String.valueOf(model.getValueAt(index, 2));
+        Category c = ipBLL.getCategoryByName(categoryName);
+        for (int i = 0; i < categoryCB.getItemCount(); i++) {
+            if (categoryCB.getItemAt(i).contains(c.getName())) {
+                categoryCB.setSelectedIndex(i);
+            }
+        }
+
+        txtUnit.setText(String.valueOf(model.getValueAt(index, 3)));
+        txtAmount.setText(String.valueOf(model.getValueAt(index, 4)));
+        txtPrice.setText(String.valueOf(model.getValueAt(index, 5)));
+    }//GEN-LAST:event_rowClicked
+
+    private void txtUnitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUnitActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btnAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoryActionPerformed
+        
+    }//GEN-LAST:event_btnAddCategoryActionPerformed
+
+    private void txtPrice(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrice
+        char c = evt.getKeyChar();
+        if (!Character.isDigit(c)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrice
+
+    private void increaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseBtnActionPerformed
+        if (!txtAmount.getText().equals("")) {
+            int updateAmount = Integer.parseInt(txtAmount.getText());
+            updateAmount += 1;
+            txtAmount.setText(String.valueOf(updateAmount));
+        }
+    }//GEN-LAST:event_increaseBtnActionPerformed
 
     private void decreaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseBtnActionPerformed
         String amountString = txtAmount.getText();
@@ -400,28 +662,28 @@ public class VegetableUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtAmount
 
-    private void increaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_increaseBtnActionPerformed
-        if (!txtAmount.getText().equals("")) {
-            int updateAmount = Integer.parseInt(txtAmount.getText());
-            updateAmount += 1;
-            txtAmount.setText(String.valueOf(updateAmount));
-        }
-    }//GEN-LAST:event_increaseBtnActionPerformed
-
-    private void txtAmount1(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmount1
-        char c = evt.getKeyChar();
-        if (!Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtAmount1
-
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void txtVegNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVegNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
+    }//GEN-LAST:event_txtVegNameActionPerformed
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBackActionPerformed
+    private void categoryCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryCBActionPerformed
+        if (categoryCB.getSelectedIndex() == 0) {
+            txtDescription.setText("");
+            return;
+        }
+        String item = (String) categoryCB.getSelectedItem();
+        String splitedStrings[] = item.split(" - ");
+        int id = Integer.parseInt(splitedStrings[0]);
+        String des = ipBLL.getCategory(id).getDescription();
+        txtDescription.setText(des);
+    }//GEN-LAST:event_categoryCBActionPerformed
+
+    private void txtSearchKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String name = txtSearch.getText();
+            vegetableList(ipBLL.findCategory(name));
+        }
+    }//GEN-LAST:event_txtSearchKeyPressed
 
     /**
      * @param args the command line arguments
@@ -475,18 +737,14 @@ public class VegetableUI extends javax.swing.JFrame {
 
     private void loadToCombobox() {
         categoryCB.addItem("--Select category");
-        for (int i = 0; i < ipBLL.catgoryList().size(); i++) {
-            String item = ipBLL.catgoryList().get(i).getCatagoryID() + " - " + ipBLL.catgoryList().get(i).getName();
+        for (int i = 0; i < ipBLL.categoryList().size(); i++) {
+            String item = ipBLL.categoryList().get(i).getCatagoryID() + " - " + ipBLL.categoryList().get(i).getName();
             categoryCB.addItem(item);
         }
     }
 
-    private void productList() {
-        table.setModel(model(ipBLL.productList()));
-    }
-
-    private DefaultTableModel model(ArrayList list) {
-        String[] columnNames = {"ID", "Vegetable Name", "Category", "Unit", "Price"};
+    private void vegetableList(ArrayList list) {
+        String[] columnNames = {"ID", "Vegetable Name", "Category", "Unit", "Amount", "Price"};
         System.out.println(list.size());
         Object[][] data = new Object[list.size()][6];
         for (int i = 0; i < list.size(); i++) {
@@ -495,10 +753,11 @@ public class VegetableUI extends javax.swing.JFrame {
             data[i][1] = vegetable.getVegetableName();
             data[i][2] = vegetable.getCategory().getName();
             data[i][3] = vegetable.getUnit();
-            data[i][4] = vegetable.getPrice();
+            data[i][4] = vegetable.getAmount();
+            data[i][5] = vegetable.getPrice();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
-        return model;
+        table.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -506,28 +765,36 @@ public class VegetableUI extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JLabel bg;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnAddCategory;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDel;
+    private javax.swing.JButton btnRef;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUpd;
     private javax.swing.JLabel category;
     private javax.swing.JComboBox<String> categoryCB;
     private javax.swing.JLabel categoryDes;
     private javax.swing.JButton decreaseBtn;
-    private javax.swing.JTextArea description;
+    private javax.swing.JPanel functionsPanel;
     private javax.swing.JButton increaseBtn;
     private javax.swing.JPanel informationPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblUnit;
     private javax.swing.JLabel photo;
     private javax.swing.JPanel photoPanel;
     private javax.swing.JLabel price;
-    private javax.swing.JTextField search;
     private javax.swing.JTable table;
     private javax.swing.JPanel tablePanel;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtAmount;
-    private javax.swing.JTextField txtAmount1;
+    private javax.swing.JTextArea txtDescription;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtUnit;
     private javax.swing.JTextField txtVegName;
     private javax.swing.JLabel vegetableName;
     // End of variables declaration//GEN-END:variables
