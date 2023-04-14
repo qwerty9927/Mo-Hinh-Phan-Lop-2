@@ -6,9 +6,8 @@ import Entity.Vegetable;
 import java.util.ArrayList;
 
 public class ImportProductBLL {
-    ImportProductDAL ipDAL;
+    ImportProductDAL ipDAL = new ImportProductDAL();;
     public ImportProductBLL() {
-        ipDAL = new ImportProductDAL();
     }
     
     public ArrayList<Vegetable> productList(){
@@ -19,12 +18,30 @@ public class ImportProductBLL {
         return ipDAL.categoryList();
     }
     
-    public ArrayList loadCategoryDes(){
-        return ipDAL.loadCategoryDes();
+    public boolean createVegetable(Vegetable vegetable){
+        return ipDAL.createVegetable(vegetable);
     }
     
-    public boolean importProduct(Vegetable vegetable){
-        return ipDAL.Import(vegetable);
+    public boolean createCategory(Category c){
+        return ipDAL.createCategory(c);
+    }
+    
+    public boolean removeVegetable(int id){
+        return ipDAL.removeVegetable(id);
+    }
+    
+    public boolean removeCategory(Category c){
+        return ipDAL.removeCategory(c);
+    }
+    
+    public boolean updateVegetable(Vegetable v){
+        
+        return ipDAL.updateVegetable(v);
+    }
+    
+    public boolean updateCategory(Category c){
+        
+        return ipDAL.updateCategory(c);
     }
     
     public Vegetable getProduct(int Id) {

@@ -289,7 +289,7 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         background.add(photoPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 150, 150));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/backgound.jpg"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background.jpg"))); // NOI18N
         bg.setText("jLabel2");
         background.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 350));
 
@@ -447,17 +447,15 @@ public class ImportProductUI extends javax.swing.JFrame {
     }
 
     private DefaultTableModel model(ArrayList list) {
-        String[] columnNames = {"ID", "Category", "Vegetable Name", "Unit", "Amount", "Price"};
+        String[] columnNames = {"ID", "Vegetable Name", "Amount", "Price"};
         System.out.println(list.size());
-        Object[][] data = new Object[list.size()][6];
+        Object[][] data = new Object[list.size()][4];
         for (int i = 0; i < list.size(); i++) {
             Vegetable vegetable = (Vegetable) list.get(i);
             data[i][0] = vegetable.getVegetableID();
-            data[i][1] = vegetable.getCategory().getName();
-            data[i][2] = vegetable.getVegetableName();
-            data[i][3] = vegetable.getUnit();
-            data[i][4] = vegetable.getAmount();
-            data[i][5] = vegetable.getPrice();
+            data[i][1] = vegetable.getVegetableName();
+            data[i][3] = vegetable.getAmount();
+            data[i][4] = vegetable.getPrice();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         return model;

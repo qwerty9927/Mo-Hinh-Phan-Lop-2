@@ -101,6 +101,7 @@ public class VegetableUI extends javax.swing.JFrame {
         description.setColumns(20);
         description.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         description.setLineWrap(true);
+        description.setWrapStyleWord(true);
         description.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane2.setViewportView(description);
 
@@ -485,17 +486,16 @@ public class VegetableUI extends javax.swing.JFrame {
     }
 
     private DefaultTableModel model(ArrayList list) {
-        String[] columnNames = {"ID", "Category", "Vegetable Name", "Unit", "Amount", "Price"};
+        String[] columnNames = {"ID", "Vegetable Name", "Category", "Unit", "Price"};
         System.out.println(list.size());
         Object[][] data = new Object[list.size()][6];
         for (int i = 0; i < list.size(); i++) {
             Vegetable vegetable = (Vegetable) list.get(i);
             data[i][0] = vegetable.getVegetableID();
-            data[i][1] = vegetable.getCategory().getName();
-            data[i][2] = vegetable.getVegetableName();
+            data[i][1] = vegetable.getVegetableName();
+            data[i][2] = vegetable.getCategory().getName();
             data[i][3] = vegetable.getUnit();
-            data[i][4] = vegetable.getAmount();
-            data[i][5] = vegetable.getPrice();
+            data[i][4] = vegetable.getPrice();
         }
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         return model;
