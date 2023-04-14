@@ -117,7 +117,7 @@ public class Layout implements MouseListener, Constants {
 
             case "Import Management":
                 eastPanel.removeAll();
-                eastPanel.add(new ImportManagementUI().getContentPane());
+                eastPanel.add(new ImportProductUI().getContentPane());
                 eastPanel.repaint();
                 eastPanel.revalidate();
                 break;
