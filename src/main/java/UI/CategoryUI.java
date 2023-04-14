@@ -25,6 +25,7 @@ public class CategoryUI extends javax.swing.JFrame {
      */
     public CategoryUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ipBLL = new ImportProductBLL();
         categoryList(ipBLL.categoryList());
     }

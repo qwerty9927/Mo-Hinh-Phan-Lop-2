@@ -29,6 +29,7 @@ public class VegetableUI extends javax.swing.JFrame {
      */
     public VegetableUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
         ipBLL = new ImportProductBLL();
         vegetableList(ipBLL.vegetableList());
         loadToCombobox();
@@ -555,7 +556,7 @@ public class VegetableUI extends javax.swing.JFrame {
             if (ipBLL.removeVegetable(ipBLL.getVegetable(id))) {
                 JOptionPane.showMessageDialog(this,
                         "Category deleted successfully!");
-                vegetableList(ipBLL.categoryList());
+                vegetableList(ipBLL.vegetableList());
             }
         }
     }//GEN-LAST:event_btnDelActionPerformed

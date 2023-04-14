@@ -12,6 +12,7 @@ import com.sun.jdi.connect.Connector;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +57,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         increaseBtn = new javax.swing.JButton();
         price = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
         categoryName = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnAdd1 = new javax.swing.JButton();
@@ -72,6 +73,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -174,13 +176,13 @@ public class ImportProductUI extends javax.swing.JFrame {
             }
         });
 
-        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd.setText("Import");
-        btnAdd.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+        btnImport.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnImport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        btnImport.setText("Import");
+        btnImport.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+                btnImportActionPerformed(evt);
             }
         });
 
@@ -193,7 +195,7 @@ public class ImportProductUI extends javax.swing.JFrame {
 
         btnAdd1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        btnAdd1.setText("Add a new product");
+        btnAdd1.setText("Add a new vegetable");
         btnAdd1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,16 +233,16 @@ public class ImportProductUI extends javax.swing.JFrame {
                         .addComponent(vegetableCB, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationPanelLayout.createSequentialGroup()
                         .addComponent(categoryDes, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 189, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAdd1))
                             .addGroup(informationPanelLayout.createSequentialGroup()
-                                .addComponent(categoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 154, Short.MAX_VALUE))))
+                                .addComponent(categoryName, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(informationPanelLayout.createSequentialGroup()
                         .addGroup(informationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(price, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,12 +259,13 @@ public class ImportProductUI extends javax.swing.JFrame {
                                         .addComponent(increaseBtn)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(informationPanelLayout.createSequentialGroup()
-                        .addComponent(amount1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(amount1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(decreaseBtn))
+                        .addComponent(decreaseBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnAdd)))
+                        .addComponent(btnImport)))
                 .addContainerGap())
         );
         informationPanelLayout.setVerticalGroup(
@@ -295,7 +298,7 @@ public class ImportProductUI extends javax.swing.JFrame {
                     .addComponent(increaseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(decreaseBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAdd)
+                .addComponent(btnImport)
                 .addGap(71, 71, 71))
         );
 
@@ -394,7 +397,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
         int index = table.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) table.getModel();
         int vegetableID = (int) model.getValueAt(index, 0);
@@ -417,7 +420,7 @@ public class ImportProductUI extends javax.swing.JFrame {
             }
         }
         ipBLL.updateVegetable(v);
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnImportActionPerformed
 
     private void decreaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decreaseBtnActionPerformed
         String amountString = txtAmount.getText();
@@ -577,14 +580,14 @@ public class ImportProductUI extends javax.swing.JFrame {
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         return model;
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel amount;
     private javax.swing.JLabel amount1;
     private javax.swing.JPanel background;
     private javax.swing.JLabel bg;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
+    private javax.swing.JButton btnImport;
     private javax.swing.JButton btnSearch;
     private javax.swing.JLabel categoryDes;
     private javax.swing.JLabel categoryName;

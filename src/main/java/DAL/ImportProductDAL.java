@@ -17,7 +17,7 @@ public class ImportProductDAL {
 //        session.beginTransaction();
     }
 
-    public ArrayList vegetableList() {
+    public ArrayList<Vegetable> vegetableList() {
         Query query = session.createQuery("from Vegetable", Vegetable.class);
         ArrayList<Vegetable> vegetables = (ArrayList<Vegetable>) query.list();
         return vegetables;

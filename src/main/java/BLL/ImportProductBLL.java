@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class ImportProductBLL {
 
-    ImportProductDAL ipDAL = new ImportProductDAL();
+    private ImportProductDAL ipDAL = new ImportProductDAL();
 
     ;
     public ImportProductBLL() {
@@ -45,7 +45,7 @@ public class ImportProductBLL {
         return ipDAL.updateCategory(c);
     }
 
-    public ArrayList findCategory(String name) {
+    public ArrayList<Category> findCategory(String name) {
         ArrayList<Category> foundList = new ArrayList<Category>();
         for (Category c : categoryList()) {
             if (c.getName().toLowerCase().contains(name.toLowerCase())) {
@@ -56,7 +56,7 @@ public class ImportProductBLL {
         return foundList;
     }
     
-    public ArrayList findVegetable(String name) {
+    public ArrayList<Vegetable> findVegetable(String name) {
         ArrayList<Vegetable> foundList = new ArrayList<Vegetable>();
         for (Vegetable v : vegetableList()) {
             if (v.getVegetableName().toLowerCase().contains(name.toLowerCase())) {

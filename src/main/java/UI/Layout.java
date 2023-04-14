@@ -10,16 +10,19 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class Layout implements MouseListener, Constants {
+
     String[] labelButtons = {"Customers Management", "Import Management", "Invoice", "Statistical"};
     String[] iconItemMenu = {"customer.png", "boxes.png", "invoice.png", "analysis.png"};
-    JPanel listButton[], currentClick, westPanel, eastPanel, northPanel;
+    static JPanel listButton[], currentClick, westPanel, eastPanel, northPanel;
     JFrame frame = new JFrame();
-    public Layout(){
+    ImportProductUI importProductUI = new ImportProductUI();
+
+    public Layout() {
         listButton = new JPanel[labelButtons.length];
         renderLayout();
     }
 
-    public void renderLayout(){
+    public void renderLayout() {
         JPanel rootPanel = new JPanel();
         rootPanel.setLayout(new BorderLayout(Hgap, Vgap));
         westPanel = westSide();
@@ -35,7 +38,7 @@ public class Layout implements MouseListener, Constants {
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }
 
-    public JPanel northSide(){
+    public JPanel northSide() {
         JPanel panel = new JPanel();
         JLabel title = new JLabel("Quản lý bán hàng");
         title.setFont(new Font("Verdana", Font.PLAIN, 18));
@@ -47,11 +50,11 @@ public class Layout implements MouseListener, Constants {
         return panel;
     }
 
-    public JPanel westSide(){
+    public JPanel westSide() {
         JPanel panel = new JPanel();
         Panel btnPanel = new Panel();
         btnPanel.setLayout(new BoxLayout(btnPanel, BoxLayout.Y_AXIS));
-        for(int i = 0;i < labelButtons.length;i++){
+        for (int i = 0; i < labelButtons.length; i++) {
             listButton[i] = customButton(labelButtons[i], getImage(iconItemMenu[i], 30));
             btnPanel.add(listButton[i]);
         }
@@ -64,7 +67,7 @@ public class Layout implements MouseListener, Constants {
         return panel;
     }
 
-    public JPanel eastSide(){
+    public JPanel eastSide() {
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout(Hgap, Vgap));
         panel.setBackground(Color.BLUE);
@@ -72,7 +75,7 @@ public class Layout implements MouseListener, Constants {
         return panel;
     }
 
-    private JPanel customButton(String value, JLabel icon){
+    private JPanel customButton(String value, JLabel icon) {
         // resize icon label
         icon.setBorder(new EmptyBorder(0, 10, 0, 10));
 
@@ -99,7 +102,6 @@ public class Layout implements MouseListener, Constants {
         return picLabel;
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
         for (int i = 0; i < labelButtons.length; i++) {
@@ -107,34 +109,33 @@ public class Layout implements MouseListener, Constants {
         }
         currentClick = (JPanel) e.getSource();
         currentClick.setBackground(Color.decode("#009688"));
-        switch(e.getComponent().getName()){
-            case "Customers Management":
-                eastPanel.removeAll();
-                eastPanel.add(new CustomerManagementUI().getContentPane());
-                eastPanel.repaint();
-                eastPanel.revalidate();
-                break;
+        switch (e.getComponent().getName()) {
+//            case "Customers Management":
+//                eastPanel.removeAll();
+//                eastPanel.add(new CustomerManagementUI().getContentPane());
+//                eastPanel.repaint();
+//                eastPanel.revalidate();
+//                break;
 
             case "Import Management":
                 eastPanel.removeAll();
-                eastPanel.add(new ImportProductUI().getContentPane());
+                eastPanel.add(importProductUI.getContentPane());
                 eastPanel.repaint();
                 eastPanel.revalidate();
                 break;
 
-            case "Invoicing":
-                eastPanel.removeAll();
-                eastPanel.add(new InvoiceUI().getContentPane());
-                eastPanel.repaint();
-                eastPanel.revalidate();
-                break;
-
-            case "Statistical":
-                eastPanel.removeAll();
-                eastPanel.add(new StatisticalUI().getContentPane());
-                eastPanel.repaint();
-                eastPanel.revalidate();
-                break;
+//            case "Invoicing":
+//                eastPanel.removeAll();
+//                eastPanel.add(new InvoiceUI().getContentPane());
+//                eastPanel.repaint();
+//                eastPanel.revalidate();
+//                break;
+//            case "Statistical":
+//                eastPanel.removeAll();
+//                eastPanel.add(new StatisticalUI().getContentPane());
+//                eastPanel.repaint();
+//                eastPanel.revalidate();
+//                break;
         }
     }
 
@@ -150,8 +151,8 @@ public class Layout implements MouseListener, Constants {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        for(int i = 0;i < labelButtons.length;i++){
-            if(e.getComponent().getName() == labelButtons[i]){
+        for (int i = 0; i < labelButtons.length; i++) {
+            if (e.getComponent().getName() == labelButtons[i]) {
                 listButton[i].setBackground(Color.decode("#009688"));
                 break;
             }
@@ -161,7 +162,7 @@ public class Layout implements MouseListener, Constants {
     @Override
     public void mouseExited(MouseEvent e) {
         JPanel hover = (JPanel) e.getSource();
-        if(hover != currentClick){
+        if (hover != currentClick) {
             hover.setBackground(Color.decode("#004D40"));
         }
     }
@@ -169,7 +170,7 @@ public class Layout implements MouseListener, Constants {
     public static void main(String s[]) {
 
         Layout lo = new Layout();
-
+        
     }
 
 }
