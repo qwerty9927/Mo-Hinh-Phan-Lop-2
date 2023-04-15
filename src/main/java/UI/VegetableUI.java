@@ -7,12 +7,8 @@ package UI;
 import BLL.ImportProductBLL;
 import Entity.Category;
 import Entity.Vegetable;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,7 +17,8 @@ import javax.swing.table.DefaultTableModel;
  * @author MSIs
  */
 public class VegetableUI extends javax.swing.JFrame {
-
+    
+    Layout layout;
     ImportProductBLL ipBLL;
 
     /**
@@ -30,6 +27,14 @@ public class VegetableUI extends javax.swing.JFrame {
     public VegetableUI() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ipBLL = new ImportProductBLL();
+        vegetableList(ipBLL.vegetableList());
+        loadToCombobox();
+    }
+
+    public VegetableUI(Layout layout) {
+        this.layout = layout;
+        initComponents();
         ipBLL = new ImportProductBLL();
         vegetableList(ipBLL.vegetableList());
         loadToCombobox();
@@ -506,7 +511,13 @@ public class VegetableUI extends javax.swing.JFrame {
     }
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
+        Layout lo = new Layout();
+        ImportProductUI ipUI = new ImportProductUI(lo);
+        this.layout.frame.dispose();
+        lo.eastPanel.removeAll();
+        lo.eastPanel.add(ipUI.getContentPane());
+        lo.eastPanel.repaint();
+        lo.eastPanel.revalidate();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -555,7 +566,7 @@ public class VegetableUI extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             if (ipBLL.removeVegetable(ipBLL.getVegetable(id))) {
                 JOptionPane.showMessageDialog(this,
-                        "Category deleted successfully!");
+                        "Delete deleted successfully!");
                 vegetableList(ipBLL.vegetableList());
             }
         }
@@ -629,8 +640,13 @@ public class VegetableUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnAddCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddCategoryActionPerformed
-        CategoryUI categoryUI = new CategoryUI();
-        categoryUI.setVisible(true);
+        Layout lo = new Layout();
+        CategoryUI categoryUI = new CategoryUI(lo);
+        this.layout.frame.dispose();
+        lo.eastPanel.removeAll();
+        lo.eastPanel.add(categoryUI.getContentPane());
+        lo.eastPanel.repaint();
+        lo.eastPanel.revalidate();
     }//GEN-LAST:event_btnAddCategoryActionPerformed
 
     private void txtPrice(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrice

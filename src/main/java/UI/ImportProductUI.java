@@ -5,15 +5,8 @@
 package UI;
 
 import BLL.ImportProductBLL;
-import Entity.Category;
 import Entity.Vegetable;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
-import com.sun.jdi.connect.Connector;
 import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author MSIs
  */
 public class ImportProductUI extends javax.swing.JFrame {
-
+    Layout layout;
     ImportProductBLL ipBLL;
 
     /**
@@ -35,6 +28,13 @@ public class ImportProductUI extends javax.swing.JFrame {
         loadToCombobox();
     }
 
+    public ImportProductUI(Layout layout) {
+        initComponents();
+        ipBLL = new ImportProductBLL();
+        this.layout = layout;
+        vegetableList(ipBLL.vegetableList());
+        loadToCombobox();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -415,7 +415,7 @@ public class ImportProductUI extends javax.swing.JFrame {
         if (result == JOptionPane.YES_OPTION) {
             if (ipBLL.updateVegetable(v)) {
                 JOptionPane.showMessageDialog(this,
-                        "Vegeyable imported successfully!");
+                        "Vegetable imported successfully!");
                 vegetableList(ipBLL.vegetableList());
                 emptyFields();
             }
@@ -468,8 +468,13 @@ public class ImportProductUI extends javax.swing.JFrame {
     }//GEN-LAST:event_vegetableCBActionPerformed
 
     private void btnAddVegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddVegActionPerformed
-        VegetableUI vegetableUI = new VegetableUI();
-        vegetableUI.setVisible(true);
+        Layout lo = new Layout();
+        VegetableUI vegetableUI = new VegetableUI(lo);
+        this.layout.frame.dispose();
+        lo.eastPanel.removeAll();
+        lo.eastPanel.add(vegetableUI.getContentPane());
+        lo.eastPanel.repaint();
+        lo.eastPanel.revalidate();
     }//GEN-LAST:event_btnAddVegActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked

@@ -1,7 +1,5 @@
 package UI;
 
-import Util.HibernateUtil;
-import org.hibernate.Session;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -15,7 +13,7 @@ public class Layout implements MouseListener, Constants {
     String[] iconItemMenu = {"customer.png", "boxes.png", "invoice.png", "analysis.png"};
     static JPanel listButton[], currentClick, westPanel, eastPanel, northPanel;
     JFrame frame = new JFrame();
-    ImportProductUI importProductUI = new ImportProductUI();
+    ImportProductUI importProductUI = new ImportProductUI(this);
 
     public Layout() {
         listButton = new JPanel[labelButtons.length];
@@ -168,9 +166,8 @@ public class Layout implements MouseListener, Constants {
     }
 
     public static void main(String s[]) {
-
-        Layout lo = new Layout();
         
+        Layout lo = new Layout();
     }
 
 }

@@ -6,7 +6,6 @@ package UI;
 
 import BLL.ImportProductBLL;
 import Entity.Category;
-import java.awt.Frame;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -17,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author MSIs
  */
 public class CategoryUI extends javax.swing.JFrame {
-
+    Layout layout;
     ImportProductBLL ipBLL;
 
     /**
@@ -30,6 +29,15 @@ public class CategoryUI extends javax.swing.JFrame {
         categoryList(ipBLL.categoryList());
     }
 
+    public CategoryUI(Layout layout) {
+        this.layout = layout;
+        initComponents();
+        ipBLL = new ImportProductBLL();
+        categoryList(ipBLL.categoryList());
+    }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -316,7 +324,13 @@ public class CategoryUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
+        VegetableUI vegetableUI = new VegetableUI(layout);
+        this.layout.frame.dispose();
+        layout = new Layout();
+        layout.eastPanel.removeAll();
+        layout.eastPanel.add(vegetableUI.getContentPane());
+        layout.eastPanel.repaint();
+        layout.eastPanel.revalidate();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void rowClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rowClicked
